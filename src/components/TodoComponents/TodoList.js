@@ -4,8 +4,7 @@
 import React from 'react'
 import Todo from './Todo'
 
-export default function todoList({ completeHandler, todos }) {
-
+export default function todoList({ completeHandler, todos, isSearching }) {
   let todoList;
   if (todos.length) {
     
@@ -20,7 +19,7 @@ export default function todoList({ completeHandler, todos }) {
         })}
       </ul>
     );
-  } else {
+  } else if (!isSearching) {
     todoList = (<p>What would you like to do today?</p>)
   }
   return (

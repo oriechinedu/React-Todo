@@ -41,12 +41,3 @@
   color    : red;
 }
 
-.search {
-  position: absolute;
-  top: 50px;
-  right: 20px;
-  border-radius: 4px;
-  outline: none;
-  border: none;
-  padding: 0.5rem 0.8rem;
-}

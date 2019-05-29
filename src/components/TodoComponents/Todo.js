@@ -5,8 +5,7 @@ export default function todo({ todo, completeHandler }) {
   return (
     <li 
       className={todo.completed ? 'completed' : ''}
-      onClick={completeHandler}
-      data-id={todo.id}
+      onClick={() => completeHandler(todo.id)}
       >{todo.task}</li>
   )
 }

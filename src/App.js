@@ -1,9 +1,8 @@
 import React from 'react';
 import TodoList from './components/TodoComponents/TodoList'
 import TodoForm from './components/TodoComponents/TodoForm'
+import SearchTodo from './components/TodoComponents/SearchTodo'
 import './App.css';
-
-
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -14,7 +13,9 @@ class App extends React.Component {
     this.state = {
       todos:  [],
       newTodo: '',
-      error: ''
+      error: '',
+      searchMessage: '',
+      isSearching: false,
     }
   }
 
@@ -22,8 +23,7 @@ class App extends React.Component {
     this.updatedTodosFromStorage()
   }
 
-  completeHandler = (event) => {
-    const id = Number(event.target.dataset.id);
+  completeHandler = (id) => {
     const updatedTodos = this.state.todos.map((todo => {
       if (todo.id === id) {
         todo['completed'] = true;
@@ -75,15 +75,25 @@ class App extends React.Component {
   }
 
   searchHandler = (event) => {
+    this.setState({isSearching: true});
     const searchTerm = event.target.value;
     if (searchTerm) {
       const searchResult = this.state.todos.filter(todo => {
         return todo.task.includes(searchTerm)
       });
-      this.setState({todos: searchResult});
+      if (searchResult.length) {
+        this.setState({todos: searchResult});
+      } else {
+        this.setState({todos: searchResult, searchMessage: `No match found for: ${searchTerm}`});
+      }
     } else {
       this.updatedTodosFromStorage();
+      this.setState({
+          isSearching: false,
+          searchMessage: ''
+        });
     }
+    
   }
 
   setError = (msg) => {
@@ -104,10 +114,11 @@ class App extends React.Component {
     return (
       <div className="app">
         <h3> My Todo</h3>
-        <input className="search" onChange={this.searchHandler} placeholder="search todo..."/>
+         <SearchTodo searchHandler={this.searchHandler} msg={this.state.searchMessage}/>
         <TodoList
           todos={this.state.todos}
           completeHandler={this.completeHandler}
+          isSearching={this.state.isSearching}
         />
         <TodoForm
           newTodo={this.state.newTodo}
