@@ -1,4 +1,87 @@
-
 .completed {
   text-decoration: line-through;
+}
+
+form {
+  width          : 60%;
+  display        : flex;
+  flex-direction : column;
+  justify-content: center;
+  align-items    : center;
+  padding        : 0.8rem;
+}
+
+form input {
+  width        : 100%;
+  padding      : 0.8rem 1rem;
+  border-radius: 6px;
+  outline      : none;
+  border       : none;
+  border       : 1px solid gray;
+  margin-bottom: 1rem;
+  font-size    : 1.6rem;
+}
+
+form .row {
+  display        : flex;
+  justify-content: space-between;
+  align-items    : center;
+  width          : 100%;
+}
+
+form .row button {
+  padding         : 0.8rem;
+  font-size       : 1.6rem;
+  border-radius   : 6px;
+  background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+  color: white;
+}
+
+
+form .row button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+form .row button:first-of-type {
+  width: 44%;
+}
+
+form .row button:last-of-type {
+  width: 54%;
+}
+
+.todo-list {
+  width     : 80%;
+  margin    : auto;
+  max-height: 60%;
+  overflow  : scroll;
+}
+
+.todo-list p {
+  font-size : 1.6rem;
+  font-style: italic;
+  text-align: center;
+}
+
+.todo-list li {
+  font-size: 2rem;
+  color    : pink;
+  padding  : 0.8rem 0;
+}
+
+@media all and (max-width: 500px) {
+  form {
+    width: 80%;
+  }
+  form .row {
+    flex-direction: column;
+  }
+  form .row button:last-of-type {
+    width: 100%;
+    margin-top: 0.8rem;
+  }
+  form .row button:first-of-type {
+    width: 100%;
+  }
 }

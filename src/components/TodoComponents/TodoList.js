@@ -5,8 +5,10 @@ import React from 'react'
 import Todo from './Todo'
 
 export default function todoList({ completeHandler, todos }) {
-  return (
-    <div>
+
+  let todoList;
+  if (todos.length) {
+    todoList = (
       <ul>
         {todos.map(todo => {
           return <Todo
@@ -16,6 +18,13 @@ export default function todoList({ completeHandler, todos }) {
 
         })}
       </ul>
+    );
+  } else {
+    todoList = (<p>What would you like to do today?</p>)
+  }
+  return (
+    <div className="todo-list">
+      {todoList}
     </div>
 
   )

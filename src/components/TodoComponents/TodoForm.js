@@ -1,4 +1,5 @@
 import React from 'react'
+import './Todo.css'
 
 export default function todoForm({newTodo, changeHandler, addTodo, clearCompleted}) {
   return (
@@ -6,7 +7,9 @@ export default function todoForm({newTodo, changeHandler, addTodo, clearComplete
       <input 
         value={newTodo}
         onChange={changeHandler}
+        placeholder="Add todo"
       />
+      <div className="row">
       <button 
       onClick={addTodo}
       >
@@ -17,6 +20,7 @@ export default function todoForm({newTodo, changeHandler, addTodo, clearComplete
       >
       Clear Completed
       </button>
+      </div>
     </form>
   )
 }

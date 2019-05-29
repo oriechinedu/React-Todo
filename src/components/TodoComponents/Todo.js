@@ -3,7 +3,7 @@ import './Todo.css'
 
 export default function todo({ todo, completeHandler }) {
   return (
-    <li
+    <li 
       className={todo.completed ? 'completed' : ''}
       onClick={completeHandler}
       data-id={todo.id}
