@@ -60,6 +60,15 @@ class App extends React.Component {
       newTodo: ''
     })
   }
+  clearCompleted = (event) => {
+    event.preventDefault();
+    const uncompletedTodos = this.state.todos.filter(todo => {
+      return !todo.completed;
+    });
+    this.setState({
+      todos: uncompletedTodos
+    })
+  }
   
   render() {
     return (
