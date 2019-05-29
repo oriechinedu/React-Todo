@@ -19,10 +19,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const todoList = JSON.parse(localStorage.getItem('todos'));
-    if (todoList.length) {
-      this.setState({todos: todoList})
-    }
+    this.updatedTodosFromStorage()
   }
 
   completeHandler = (event) => {
@@ -77,11 +74,30 @@ class App extends React.Component {
     localStorage.setItem('todos', JSON.stringify(uncompletedTodos))
   }
 
+  searchHandler = (event) => {
+    const searchTerm = event.target.value;
+    if (searchTerm) {
+      const searchResult = this.state.todos.filter(todo => {
+        return todo.task.includes(searchTerm)
+      });
+      this.setState({todos: searchResult});
+    } else {
+      this.updatedTodosFromStorage();
+    }
+  }
+
   setError = (msg) => {
     this.setState({error: msg})
     setTimeout(() => {
       this.setState({error: ''})
     }, 1000)
+  }
+
+  updatedTodosFromStorage = () => {
+    const todoList = JSON.parse(localStorage.getItem('todos'));
+    if (todoList.length) {
+      this.setState({todos: todoList})
+    }
   }
   
   render() {
