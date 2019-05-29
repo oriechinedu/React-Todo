@@ -3,6 +3,8 @@ import TodoList from './components/TodoComponents/TodoList'
 import TodoForm from './components/TodoComponents/TodoForm'
 import './App.css';
 
+
+
 class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -10,9 +12,16 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [],
+      todos:  [],
       newTodo: '',
       error: ''
+    }
+  }
+
+  componentDidMount() {
+    const todoList = JSON.parse(localStorage.getItem('todos'));
+    if (todoList.length) {
+      this.setState({todos: todoList})
     }
   }
 
@@ -27,7 +36,8 @@ class App extends React.Component {
       }
     }));
     this.setState({ todos: updatedTodos });
-
+    localStorage.removeItem('todos');
+    localStorage.setItem('todos', JSON.stringify(updatedTodos))
   }
   changeHandler = (event) => {
     const value = event.target.value;
@@ -44,11 +54,13 @@ class App extends React.Component {
           completed: false,
         }
       ];
-      
+      const updatedTodos = this.state.todos.concat(newTodo);
       this.setState({
-        todos: this.state.todos.concat(newTodo),
+        todos: updatedTodos,
         newTodo: ''
       })
+      localStorage.removeItem('todos');
+      localStorage.setItem('todos', JSON.stringify(updatedTodos))
     } else {
       this.setError('you cannot add empty task')
     }
@@ -61,6 +73,8 @@ class App extends React.Component {
     this.setState({
       todos: uncompletedTodos
     })
+    localStorage.removeItem('todos');
+    localStorage.setItem('todos', JSON.stringify(uncompletedTodos))
   }
 
   setError = (msg) => {
@@ -74,6 +88,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <h3> My Todo</h3>
+        <input className="search" onChange={this.searchHandler} placeholder="search todo..."/>
         <TodoList
           todos={this.state.todos}
           completeHandler={this.completeHandler}

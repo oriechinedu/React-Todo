@@ -8,6 +8,7 @@ export default function todoList({ completeHandler, todos }) {
 
   let todoList;
   if (todos.length) {
+    
     todoList = (
       <ul>
         {todos.map(todo => {

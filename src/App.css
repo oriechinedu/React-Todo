@@ -7,7 +7,7 @@
   justify-content   : center;
   align-items       : center;
   overflow          : scroll;
-  padding           : 2rem;
+  padding           : 0.8rem;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(204, 202, 204, 1);
   -moz-box-shadow   : 0px 0px 5px 0px rgba(204, 202, 204, 1);
   box-shadow        : 0px 0px 5px 0px rgba(204, 202, 204, 1);
@@ -22,12 +22,31 @@
 }
 .app h3 {
   position : absolute;
-  top      : 20px;
+  top      : 5px;
   font-size: 2.5rem;
   color: pink;
+  padding: 0;
+  margin: 0;
+  margin-top: 0.8rem;
+}
+
+@media all and (max-width: 500px) {
+  .app h3 {
+    top: 5px;
+  }
 }
 
 .error {
   font-size: 1.6rem;
   color    : red;
+}
+
+.search {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  padding: 0.5rem 0.8rem;
 }
