@@ -7,7 +7,6 @@ import Todo from './Todo'
 export default function todoList({ completeHandler, todos, isSearching }) {
   let todoList;
   if (todos.length) {
-    
     todoList = (
       <ul>
         {todos.map(todo => {
